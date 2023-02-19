@@ -1,28 +1,33 @@
 import { v4 } from "uuid";
 
-let playlists = [];
+let users = [];
 
-export const playlistMemStore = {
-  async getAllPlaylists() {
-    return playlists;
+export const userMemStore = {
+  async getAllUsers() {
+    return users;
   },
 
-  async addPlaylist(playlist) {
-    playlist._id = v4();
-    playlists.push(playlist);
-    return playlist;
+  async addUser(user) {
+    user._id = v4();
+    users.push(user);
+    return user;
   },
 
-  async getPlaylistById(id) {
-    return playlists.find((playlist) => playlist._id === id);
+  async getUserById(id) {
+    return users.find((user) => user._id === id);
   },
 
-  async deletePlaylistById(id) {
-    const index = playlists.findIndex((playlist) => playlist._id === id);
-    playlists.splice(index, 1);
+  async getUserByEmail(email) {
+    return users.find((user) => user.email === email);
   },
 
-  async deleteAllPlaylists() {
-    playlists = [];
+  async deleteUserById(id) {
+    const index = users.findIndex((user) => user._id === id);
+    users.splice(index, 1);
+  },
+
+  async deleteAll() {
+    users = [];
   },
 };
+
