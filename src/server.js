@@ -3,8 +3,10 @@ import Vision from "@hapi/vision";
 import Handlebars from "handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
+import Cookie from "@hapi/cookie";
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
+import { accountsController } from "./controllers/accounts-controller.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +16,7 @@ async function init() {
     port: 3000,
     host: "localhost",
   });
+  
   await server.register(Vision);
   server.views({
     engines: {
@@ -26,8 +29,22 @@ async function init() {
     layout: true,
     isCached: false,
   });
+
   db.init();
   server.route(webRoutes);
+  
+  await server.register(Cookie);
+  server.auth.strategy("session", "cookie", {
+    cookie: {
+      name: "playtime",
+      password: "secretpasswordnotrevealedtoanyone",
+      isSecure: false,
+    },
+    redirectTo: "/",
+    validate: accountsController.validate,
+  });
+  server.auth.default("session");
+
   await server.start();
   console.log("Server running on %s", server.info.uri);
 }
