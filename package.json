@@ -1,0 +1,26 @@
+{
+  "name": "playtime",
+  "version": "0.1.0",
+  "description": "Playtime: a Hapi/node application for managing Playlists",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "lint": "eslint . --ext .js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.1.0",
+    "@hapi/vision": "^7.0.1",
+    "handlebars": "^4.7.7",
+    "uuid": "^9.0.0"
+  }
+}
