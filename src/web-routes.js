@@ -13,9 +13,11 @@ export const webRoutes = [
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
   { method: "POST", path: "/dashboard/addplaylist", config: dashboardController.addPlaylist },
+  { method: "GET", path: "/dashboard/deleteplaylist/{id}", config: dashboardController.deletePlaylist },
 
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/playlist/{id}", config: playlistController.index },
   { method: "POST", path: "/playlist/{id}/addtrack", config: playlistController.addTrack },
+  { method: "GET", path: "/playlist/{id}/deletetrack/{trackid}", config: playlistController.deleteTrack },
 ];
