@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { UserSpec } from "../models/joi-schemas.js";
 
 export const accountsController = {
   index: {
@@ -7,26 +8,37 @@ export const accountsController = {
       return h.view("main", { title: "Welcome to Playlist" });
     },
   },
+  
   showSignup: {
     auth: false,
     handler: function (request, h) {
       return h.view("signup-view", { title: "Sign up for Playlist" });
     },
   },
+
   signup: {
     auth: false,
+    validate: {
+      payload: UserSpec,
+      options: { abortEarly: false },
+      failAction: function(request, h, error) {
+        return h.view("signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const user = request.payload;
       await db.userStore.addUser(user);
       return h.redirect("/");
     },
   },
+
   showLogin: {
     auth: false,
     handler: function (request, h) {
       return h.view("login-view", { title: "Login to Playlist" });
     },
   },
+
   login: {
     auth: false,
     handler: async function (request, h) {
@@ -39,12 +51,14 @@ export const accountsController = {
       return h.redirect("/dashboard");
     },
   },
+
   logout: {
-    auth: false,
     handler: function (request, h) {
+      request.cookieAuth.clear();
       return h.redirect("/");
     },
   },
+
 
   async validate(request, session) {
     const user = await db.userStore.getUserById(session.id);
