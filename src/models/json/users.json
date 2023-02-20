@@ -1,4 +1,11 @@
 {
-    "users": []
-  }
-  
+  "users": [
+    {
+      "firstName": "Renato Francisco",
+      "lastName": "Goedert",
+      "email": "homer@simpson.com",
+      "password": "!bimQQNvt5sq4p6",
+      "_id": "35cb5025-d1f4-49f3-aa32-f682aa3b6738"
+    }
+  ]
+}
