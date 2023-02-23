@@ -35,9 +35,11 @@ async function init() {
     isCached: false,
   });
 
-  db.init();
+  db.init("mongo");
   server.route(webRoutes);
-
+  await server.start();
+  console.log("Server running on %s", server.info.uri);
+  
   const result = dotenv.config();
   if (result.error) {
     console.log(result.error.message);
@@ -55,8 +57,6 @@ async function init() {
   });
   server.auth.default("session");
 
-  await server.start();
-  console.log("Server running on %s", server.info.uri);
 }
 
 process.on("unhandledRejection", (err) => {
