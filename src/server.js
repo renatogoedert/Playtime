@@ -9,6 +9,7 @@ import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import dotenv from "dotenv";
 import Joi from "joi";
+import { apiRoutes } from "./api-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +38,7 @@ async function init() {
 
   db.init("mongo");
   server.route(webRoutes);
+  server.route(apiRoutes);
   await server.start();
   console.log("Server running on %s", server.info.uri);
   
