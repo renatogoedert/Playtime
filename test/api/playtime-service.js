@@ -49,6 +49,31 @@ export const playtimeService = {
     const res = await axios.get(`${this.playtimeUrl}/api/playlists/${id}`);
     return res.data;
   },
+
+  async createTrack(id ,track) {
+    const res = await axios.post(`${this.playtimeUrl}/api/playlists/${id}/tracks`, track);
+    return res.data;
+  },
+
+  async deleteAllTracks() {
+    const response = await axios.delete(`${this.playtimeUrl}/api/tracks`);
+    return response.data;
+  },
+
+  async deleteTrack(id) {
+    const response = await axios.delete(`${this.playtimeUrl}/api/tracks/${id}`);
+    return response.data;
+  },
+
+  async getAllTracks() {
+    const response = await axios.get(`${this.playtimeUrl}/api/tracks`);
+    return response.data;
+  },
+
+  async getTrack(id) {
+    const response = await axios.get(`${this.playtimeUrl}/api/tracks/${id}`);
+    return response.data;
+  }
 };
 
 
