@@ -1,3 +1,5 @@
+.env
+
 # IDE
 .idea
 .vscode
@@ -120,3 +122,28 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+db/_mdb_catalog.wt
+db/collection-0-4356559474448385885.wt
+db/collection-2-4356559474448385885.wt
+db/collection-4-4356559474448385885.wt
+db/index-1-4356559474448385885.wt
+db/index-3-4356559474448385885.wt
+db/index-5-4356559474448385885.wt
+db/index-6-4356559474448385885.wt
+db/mongod.lock
+db/sizeStorer.wt
+db/storage.bson
+db/WiredTiger
+db/WiredTiger.lock
+db/WiredTiger.turtle
+db/WiredTiger.wt
+db/WiredTigerHS.wt
+db/diagnostic.data/metrics.2023-02-23T11-38-24Z-00000
+db/diagnostic.data/metrics.2023-02-23T11-43-25Z-00000
+db/diagnostic.data/metrics.2023-02-23T11-57-36Z-00000
+db/diagnostic.data/metrics.2023-02-23T11-59-16Z-00000
+db/diagnostic.data/metrics.2023-02-23T12-50-16Z-00000
+db/diagnostic.data/metrics.interim
+db/journal/WiredTigerLog.0000000005
+db/journal/WiredTigerPreplog.0000000001
+db/journal/WiredTigerPreplog.0000000002
