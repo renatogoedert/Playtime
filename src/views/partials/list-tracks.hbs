@@ -5,6 +5,7 @@
       <th>Artist</th>
       <th>Duration</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,11 @@
           {{duration}}
         </td>
         <td>
+          <a href="/track/{{../playlist._id}}/edittrack/{{_id}}" class="ui icon button">
+            <i class="fas fa-edit"></i>
+          </a>
+        </td>
+        <td>
           <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="ui icon button">
             <i class="fas fa-trash"></i>
           </a>
@@ -28,4 +34,3 @@
     {{/each}}
   </tbody>
 </table>
-

@@ -23,16 +23,16 @@ export const playlistMemStore = {
     return null;
   },
 
+  async getUserPlaylists(userid) {
+    return playlists.filter((playlist) => playlist.userid === userid);
+  },
+
   async deletePlaylistById(id) {
     const index = playlists.findIndex((playlist) => playlist._id === id);
     if (index !== -1) playlists.splice(index, 1);
-  },   
+  },
 
   async deleteAllPlaylists() {
     playlists = [];
-  },
-
-  async getUserPlaylists(userid) {
-    return playlists.filter((playlist) => playlist.userid === userid);
   },
 };

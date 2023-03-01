@@ -2,9 +2,7 @@ import { assert } from "chai";
 import { db } from "../../src/models/db.js";
 import { testPlaylists, mozart } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
-import { EventEmitter } from "events";
 
-EventEmitter.setMaxListeners(25);
 suite("Playlist Model tests", () => {
 
   setup(async () => {
