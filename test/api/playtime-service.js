@@ -1,6 +1,5 @@
 import axios from "axios";
-
-import { serviceUrl } from "../fixtures.js";
+import { maggie, serviceUrl } from "../fixtures.js";
 
 export const playtimeService = {
   playtimeUrl: serviceUrl,
@@ -16,8 +15,12 @@ export const playtimeService = {
   },
 
   async getAllUsers() {
-    const res = await axios.get(`${this.playtimeUrl}/api/users`);
-    return res.data;
+    try {
+      const res = await axios.get(`${this.playtimeUrl}/api/users`);
+      return res.data;
+    } catch (e) {
+      return null;
+    }
   },
 
   async deleteAllUsers() {
@@ -49,6 +52,39 @@ export const playtimeService = {
     const res = await axios.get(`${this.playtimeUrl}/api/playlists/${id}`);
     return res.data;
   },
+
+  async getAllTracks() {
+    const res = await axios.get(`${this.playtimeUrl}/api/tracks`);
+    return res.data;
+  },
+
+  async createTrack(id, track) {
+    const res = await axios.post(`${this.playtimeUrl}/api/playlists/${id}/tracks`, track);
+    return res.data;
+  },
+
+  async deleteAllTracks() {
+    const res = await axios.delete(`${this.playtimeUrl}/api/tracks`);
+    return res.data;
+  },
+
+  async getTrack(id) {
+    const res = await axios.get(`${this.playtimeUrl}/api/tracks/${id}`);
+    return res.data;
+  },
+
+  async deleteTrack(id) {
+    const res = await axios.delete(`${this.playtimeUrl}/api/tracks/${id}`);
+    return res.data;
+  },
+
+  async authenticate(user) {
+    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, user);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    return response.data;
+  },
+
+  async clearAuth() {
+    axios.defaults.headers.common["Authorization"] = "";
+  },
 };
-
-

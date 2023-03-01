@@ -8,10 +8,14 @@ suite("Track API tests", () => {
   let beethovenSonatas = null;
 
   setup(async () => {
-    await playtimeService.deleteAllPlaylists();
-    await playtimeService.deleteAllUsers();
-    await playtimeService.deleteAllTracks();
+    playtimeService.clearAuth();
     user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
+    await playtimeService.deleteAllPlaylists();
+    await playtimeService.deleteAllTracks();
+    await playtimeService.deleteAllUsers();
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
     mozart.userid = user._id;
     beethovenSonatas = await playtimeService.createPlaylist(mozart);
   });
@@ -64,4 +68,3 @@ suite("Track API tests", () => {
     }
   });
 });
-

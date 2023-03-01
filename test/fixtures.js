@@ -1,3 +1,5 @@
+export const serviceUrl = "http://localhost:3000";
+
 export const maggie = {
   firstName: "Maggie",
   lastName: "Simpson",
@@ -36,6 +38,7 @@ export const concerto = {
   "duration": 15
 };
 
+
 export const beethoven = {
   title: "Mozart Favourites"
 };
@@ -69,5 +72,3 @@ export const testTracks = [
     "duration": 4
   }
 ];
-
-export const serviceUrl = "http://localhost:3000";
