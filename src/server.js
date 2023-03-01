@@ -10,6 +10,15 @@ import { accountsController } from "./controllers/accounts-controller.js";
 import dotenv from "dotenv";
 import Joi from "joi";
 import { apiRoutes } from "./api-routes.js";
+import Inert from "@hapi/inert";
+import HapiSwagger from "hapi-swagger";
+
+const swaggerOptions = {
+  info: {
+    title: "Playtime API",
+    version: "0.1",
+  },
+};
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,8 +31,18 @@ async function init() {
   
   await server.register(Vision);
   await server.register(Cookie);
+  await server.register(Inert);
   server.validator(Joi);
 
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    },
+  ]);
+  
   server.views({
     engines: {
       hbs: Handlebars,
